@@ -2,6 +2,7 @@
 Mozilla Persona authentication backend, docs at:
     http://psa.matiasaguirre.net/docs/backends/persona.html
 """
+from social.utils import handle_http_errors
 from social.backends.base import BaseAuth
 from social.exceptions import AuthFailed, AuthMissingParameter
 
@@ -28,11 +29,12 @@ class PersonaAuth(BaseAuth):
                 'first_name': '',
                 'last_name': ''}
 
-    def extra_data(self, user, uid, response, details):
+    def extra_data(self, user, uid, response, details=None, *args, **kwargs):
         """Return users extra data"""
         return {'audience': response['audience'],
                 'issuer': response['issuer']}
 
+    @handle_http_errors
     def auth_complete(self, *args, **kwargs):
         """Completes loging process, must return user instance"""
         if 'assertion' not in self.data:

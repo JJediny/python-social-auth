@@ -1,11 +1,10 @@
 import six
 
-from requests import HTTPError
 from requests_oauthlib import OAuth1
 from oauthlib.oauth1 import SIGNATURE_TYPE_AUTH_HEADER
 
 from social.p3 import urlencode, unquote
-from social.utils import url_add_parameters, parse_qs
+from social.utils import url_add_parameters, parse_qs, handle_http_errors
 from social.exceptions import AuthFailed, AuthCanceled, AuthUnknownError, \
                               AuthMissingParameter, AuthStateMissing, \
                               AuthStateForbidden, AuthTokenError
@@ -37,11 +36,13 @@ class OAuthAuth(BaseAuth):
     REDIRECT_STATE = False
     STATE_PARAMETER = False
 
-    def extra_data(self, user, uid, response, details=None):
+    def extra_data(self, user, uid, response, details=None, *args, **kwargs):
         """Return access_token and extra defined names to store in
         extra_data field"""
-        data = super(OAuthAuth, self).extra_data(user, uid, response, details)
-        data['access_token'] = response.get('access_token', '')
+        data = super(OAuthAuth, self).extra_data(user, uid, response, details,
+                                                 *args, **kwargs)
+        data['access_token'] = response.get('access_token', '') or \
+                               kwargs.get('access_token')
         return data
 
     def state_token(self):
@@ -170,21 +171,17 @@ class BaseOAuth1(OAuthAuth):
                 raise AuthCanceled(self, 'User refused the access')
             raise AuthUnknownError(self, 'Error was ' + data['oauth_problem'])
 
+    @handle_http_errors
     def auth_complete(self, *args, **kwargs):
         """Return user, might be logged in"""
         # Multiple unauthorized tokens are supported (see #521)
         self.process_error(self.data)
         self.validate_state()
         token = self.get_unauthorized_token()
-        try:
-            access_token = self.access_token(token)
-        except HTTPError as err:
-            if err.response.status_code == 400:
-                raise AuthCanceled(self)
-            else:
-                raise
+        access_token = self.access_token(token)
         return self.do_auth(access_token, *args, **kwargs)
 
+    @handle_http_errors
     def do_auth(self, access_token, *args, **kwargs):
         """Finish the auth process once the access_token was retrieved"""
         if not isinstance(access_token, dict):
@@ -227,6 +224,10 @@ class BaseOAuth1(OAuthAuth):
         self.strategy.session_set(name, tokens)
         return token
 
+    def request_token_extra_arguments(self):
+        """Return extra arguments needed on request-token process"""
+        return self.setting('REQUEST_TOKEN_EXTRA_ARGUMENTS', {})
+
     def unauthorized_token(self):
         """Return request for unauthorized token (first stage)"""
         params = self.request_token_extra_arguments()
@@ -268,14 +269,23 @@ class BaseOAuth1(OAuthAuth):
                    signature_type=SIGNATURE_TYPE_AUTH_HEADER):
         key, secret = self.get_key_and_secret()
         oauth_verifier = oauth_verifier or self.data.get('oauth_verifier')
-        token = token or {}
+        if token:
+            resource_owner_key = token.get('oauth_token')
+            resource_owner_secret = token.get('oauth_token_secret')
+            if not resource_owner_key:
+                raise AuthTokenError(self, 'Missing oauth_token')
+            if not resource_owner_secret:
+                raise AuthTokenError(self, 'Missing oauth_token_secret')
+        else:
+            resource_owner_key = None
+            resource_owner_secret = None
         # decoding='utf-8' produces errors with python-requests on Python3
         # since the final URL will be of type bytes
         decoding = None if six.PY3 else 'utf-8'
         state = self.get_or_create_state()
         return OAuth1(key, secret,
-                      resource_owner_key=token.get('oauth_token'),
-                      resource_owner_secret=token.get('oauth_token_secret'),
+                      resource_owner_key=resource_owner_key,
+                      resource_owner_secret=resource_owner_secret,
                       callback_uri=self.get_redirect_uri(state),
                       verifier=oauth_verifier,
                       signature_type=signature_type,
@@ -340,6 +350,9 @@ class BaseOAuth2(OAuthAuth):
             'redirect_uri': self.get_redirect_uri(state)
         }
 
+    def auth_complete_credentials(self):
+        return None
+
     def auth_headers(self):
         return {'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept': 'application/json'}
@@ -356,30 +369,29 @@ class BaseOAuth2(OAuthAuth):
         elif 'denied' in data:
             raise AuthCanceled(self, data['denied'])
 
+    @handle_http_errors
     def auth_complete(self, *args, **kwargs):
         """Completes loging process, must return user instance"""
         state = self.validate_state()
         self.process_error(self.data)
-        try:
-            response = self.request_access_token(
-                self.access_token_url(),
-                data=self.auth_complete_params(state),
-                headers=self.auth_headers(),
-                method=self.ACCESS_TOKEN_METHOD
-            )
-        except HTTPError as err:
-            if err.response.status_code == 400:
-                raise AuthCanceled(self)
-            else:
-                raise
-        except KeyError:
-            raise AuthUnknownError(self)
+
+        response = self.request_access_token(
+            self.access_token_url(),
+            data=self.auth_complete_params(state),
+            headers=self.auth_headers(),
+            auth=self.auth_complete_credentials(),
+            method=self.ACCESS_TOKEN_METHOD
+        )
+        print(dict(response))
         self.process_error(response)
         return self.do_auth(response['access_token'], response=response,
                             *args, **kwargs)
 
+    @handle_http_errors
     def do_auth(self, access_token, *args, **kwargs):
         """Finish the auth process once the access_token was retrieved"""
+        print(args)
+        print(kwargs)
         data = self.user_data(access_token, *args, **kwargs)
         response = kwargs.get('response') or {}
         response.update(data or {})

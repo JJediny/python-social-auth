@@ -8,7 +8,7 @@ import json
 import base64
 import hashlib
 
-from social.utils import parse_qs, constant_time_compare
+from social.utils import parse_qs, constant_time_compare, handle_http_errors
 from social.backends.oauth import BaseOAuth2
 from social.exceptions import AuthException, AuthCanceled, AuthUnknownError, \
                               AuthMissingParameter
@@ -19,11 +19,11 @@ class FacebookOAuth2(BaseOAuth2):
     name = 'facebook'
     RESPONSE_TYPE = None
     SCOPE_SEPARATOR = ','
-    AUTHORIZATION_URL = 'https://www.facebook.com/dialog/oauth'
-    ACCESS_TOKEN_URL = 'https://graph.facebook.com/oauth/access_token'
-    REVOKE_TOKEN_URL = 'https://graph.facebook.com/{uid}/permissions'
+    AUTHORIZATION_URL = 'https://www.facebook.com/v2.3/dialog/oauth'
+    ACCESS_TOKEN_URL = 'https://graph.facebook.com/v2.3/oauth/access_token'
+    REVOKE_TOKEN_URL = 'https://graph.facebook.com/v2.3/{uid}/permissions'
     REVOKE_TOKEN_METHOD = 'DELETE'
-    USER_DATA_URL = 'https://graph.facebook.com/me'
+    USER_DATA_URL = 'https://graph.facebook.com/v2.3/me'
     EXTRA_DATA = [
         ('id', 'id'),
         ('expires', 'expires')
@@ -62,6 +62,7 @@ class FacebookOAuth2(BaseOAuth2):
             raise AuthCanceled(self, data.get('error_message') or
                                      data.get('error_code'))
 
+    @handle_http_errors
     def auth_complete(self, *args, **kwargs):
         """Completes loging process, must return user instance"""
         self.process_error(self.data)
@@ -69,13 +70,19 @@ class FacebookOAuth2(BaseOAuth2):
             raise AuthMissingParameter(self, 'code')
         state = self.validate_state()
         key, secret = self.get_key_and_secret()
-        url = self.ACCESS_TOKEN_URL
-        response = self.get_querystring(url, params={
+        response = self.request(self.ACCESS_TOKEN_URL, params={
             'client_id': key,
             'redirect_uri': self.get_redirect_uri(state),
             'client_secret': secret,
             'code': self.data['code']
         })
+        # API v2.3 returns a JSON, according to the documents linked at issue
+        # #592, but it seems that this needs to be enabled(?), otherwise the
+        # usual querystring type response is returned.
+        try:
+            response = response.json()
+        except ValueError:
+            response = parse_qs(response.text)
         access_token = response['access_token']
         return self.do_auth(access_token, response, *args, **kwargs)
 

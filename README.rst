@@ -63,6 +63,7 @@ or current ones extended):
     * Clef_ OAuth2
     * Coursera_ OAuth2
     * Dailymotion_ OAuth2
+    * DigitalOcean_ OAuth2 https://developers.digitalocean.com/documentation/oauth/
     * Disqus_ OAuth2
     * Douban_ OAuth1 and OAuth2
     * Dropbox_ OAuth1 and OAuth2
@@ -89,6 +90,7 @@ or current ones extended):
     * MapMyFitness_ OAuth2
     * Mendeley_ OAuth1 http://mendeley.com
     * Mixcloud_ OAuth2
+    * `Moves app`_ OAuth2 https://dev.moves-app.com/docs/authentication
     * `Mozilla Persona`_
     * NaszaKlasa_ OAuth2
     * Odnoklassniki_ OAuth2 and Application Auth
@@ -118,6 +120,7 @@ or current ones extended):
     * Twitter_ OAuth1
     * VK.com_ OpenAPI, OAuth2 and OAuth2 for Applications
     * Weibo_ OAuth2
+    * Withings_ OAuth1
     * Wunderlist_ OAuth2
     * Xing_ OAuth1
     * Yahoo_ OpenId and OAuth2
@@ -239,6 +242,7 @@ check `django-social-auth LICENSE`_ for details:
 .. _Clef: https://getclef.com/
 .. _Coursera: https://www.coursera.org/
 .. _Dailymotion: https://dailymotion.com
+.. _DigitalOcean: https://www.digitalocean.com/
 .. _Disqus: https://disqus.com
 .. _Douban: http://www.douban.com
 .. _Dropbox: https://dropbox.com
@@ -259,6 +263,7 @@ check `django-social-auth LICENSE`_ for details:
 .. _Mailru: https://mail.ru
 .. _MapMyFitness: http://www.mapmyfitness.com/
 .. _Mixcloud: https://www.mixcloud.com
+.. _Moves app: https://dev.moves-app.com/docs/
 .. _Mozilla Persona: http://www.mozilla.org/persona/
 .. _NaszaKlasa: https://developers.nk.pl/
 .. _Odnoklassniki: http://www.odnoklassniki.ru

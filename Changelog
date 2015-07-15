@@ -1,6 +1,338 @@
-2015-03-31 HEAD (unreleased)
+2015-06-24 v0.2.11
+==================
+
+  * 2015-06-24 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.11
+
+  * 2015-06-19 Matías Aguirre <matiasaguirre@gmail.com>
+    Link docs
+
+  * 2015-06-19 Matías Aguirre <matiasaguirre@gmail.com>
+    PEP8
+
+  * 2015-06-18 Braden MacDonald <braden@opencraft.com>
+    Added documentation
+
+  * 2015-06-17 Matías Aguirre <matiasaguirre@gmail.com>
+    PEP8
+
+  * 2015-05-21 Braden MacDonald <braden@opencraft.com>
+    Minor cleanups
+
+  * 2015-05-20 Braden MacDonald <braden@opencraft.com>
+    Minor consistency fix
+
+  * 2015-05-20 Braden MacDonald <braden@opencraft.com>
+    Add an integration point for extra security layers like
+    eduPersonEntitlement
+
+  * 2015-05-20 Braden MacDonald <braden@opencraft.com>
+    Make IdP name format slightly more flexible
+
+  * 2015-05-11 Braden MacDonald <braden@opencraft.com>
+    Add python-saml requirement (temporary commit)
+
+  * 2015-05-08 Braden MacDonald <braden@opencraft.com>
+    Tests for SAML backend
+
+  * 2015-04-30 Braden MacDonald <braden@opencraft.com>
+    SAML2 backend using OneLogin's python-saml
+
+2015-05-29 v0.2.10
+==================
+
+  * 2015-05-29 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.10
+
+  * 2015-05-29 Matías Aguirre <matiasaguirre@gmail.com>
+    Newline at end of file
+
+  * 2015-05-29 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix changetip docs errors
+
+  * 2015-05-29 Matías Aguirre <matiasaguirre@gmail.com>
+    Coding style
+
+  * 2015-05-29 Matías Aguirre <matiasaguirre@gmail.com>
+    PEP8
+
+  * 2015-05-29 Matías Aguirre <matiasaguirre@gmail.com>
+    PEP8
+
+  * 2015-05-29 Matías Aguirre <matiasaguirre@gmail.com>
+    Avoid storing empty values from user details
+
+  * 2015-05-26 vinhub <vin.bhalerao@gmail.com>
+    Added Azure AD docs to index.rst
+
+  * 2015-05-26 Vinayak (Vin) Bhalerao <vin.bhalerao@gmail.com>
+    Removed
+
+  * 2015-05-25 sushantgawali <sushant.gawali@gmail.com>
+    changes in extra_data
+
+  * 2015-05-18 sushantgawali <vin.bhalerao@gmail.com>
+    added copyright / license notices
+
+  * 2015-05-15 sushantgawali <vin.bhalerao@gmail.com>
+    updated test cases
+
+  * 2015-05-13 sushantgawali <vin.bhalerao@gmail.com>
+    added get_auth_token method for ease of use
+
+  * 2015-05-12 sushantgawali <vin.bhalerao@gmail.com>
+    added test cases for AzureADOAuth2 refresh token method added
+
+  * 2015-05-11 sushantgawali <vin.bhalerao@gmail.com>
+    added generic resource setting added license text added documentation file
+
+  * 2015-05-11 sushantgawali <vin.bhalerao@gmail.com>
+    cleaned up unneeded Sharepoint related code
+
+  * 2015-05-11 sushantgawali <vin.bhalerao@gmail.com>
+    Added provider for Microsoft Azure Active Directory OAuth2
+
+  * 2015-05-20 Marek Jalovec <marek.jalovec@gmail.com>
+    Fixes "ImportError: No module named packages.urllib3.poolmanager" error
+    (fixes #617)
+
+  * 2015-05-20 blurrcat <blurrcat@gmail.com>
+    fix Fitbit OAuth 1 authorization URL
+
+  * 2015-05-17 duoduo369 <duoduo3369@gmail.com>
+    add weixin backends
+
+  * 2015-05-16 Andrew Starr-Bochicchio <a.starr.b@gmail.com>
+    Add a DigitalOcean backend.
+
+  * 2015-05-08 Matías Aguirre <matiasaguirre@gmail.com>
+    Ensure that all the requirements are installed
+
+  * 2015-05-08 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix syntax (backward compatible)
+
+  * 2015-05-07 Matías Aguirre <matiasaguirre@gmail.com>
+    Dev version flagged
+
+2015-05-07 v0.2.9
+=================
+
+  * 2015-05-07 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.9
+
+  * 2015-05-07 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix manifest definition
+
+2015-05-07 v0.2.8
+=================
+
+  * 2015-05-07 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.8
+
+  * 2015-05-02 Avi אבי Alkalay אלקלעי <avibrazil@gmail.com>
+    Fixed Moves link on list of providers
+
+  * 2015-05-02 Avi אבי Alkalay אלקלעי <avibrazil@gmail.com>
+    Added Moves to the list of providers
+
+  * 2015-05-01 Matías Aguirre <matiasaguirre@gmail.com>
+    Add note about TLSv1 support in Amazon backend
+
+  * 2015-05-01 Matías Aguirre <matiasaguirre@gmail.com>
+    Support SSL protocol override, default Amazon to TLSv1. Fixes #603
+
+  * 2015-04-27 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix typos in docs (thanks to vsobolmaven)
+
+  * 2015-04-21 Matías Aguirre <matiasaguirre@gmail.com>
+    Make URLs trailing slash be configurable by setting. Refs #505
+
+  * 2015-04-20 Matías Aguirre <matiasaguirre@gmail.com>
+    Use get_json() helper
+
+  * 2015-04-20 Nick Sullivan <nick@sullivanflock.com>
+    Documentation for ChangeTip backend
+
+  * 2015-04-20 Nick Sullivan <nick@sullivanflock.com>
+    fail gracefully on missing email
+
+  * 2015-04-19 Matías Aguirre <matiasaguirre@gmail.com>
+    Allow to remove team from username in slack backend
+
+  * 2015-04-19 Matías Aguirre <matiasaguirre@gmail.com>
+    Flag dev version
+
+2015-04-19 v0.2.7
+=================
+
+  * 2015-04-19 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.7
+
+  * 2015-04-19 Matías Aguirre <matiasaguirre@gmail.com>
+    Don't send redirect_state to slack backend
+
+  * 2015-04-17 Nick Sullivan <nick@sullivanflock.com>
+    use api domain for changetip request
+
+  * 2015-04-17 Nick Sullivan <nick@sullivanflock.com>
+    ChangeTip backend
+
+  * 2015-04-16 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix clean username regex. Fixes #594
+
+  * 2015-04-16 Matías Aguirre <matiasaguirre@gmail.com>
+    PEP8 and switch check order
+
+  * 2015-04-16 Matías Aguirre <matiasaguirre@gmail.com>
+    Take into account that sometimes API v2.3 returns the old querystring
+    format. Fixes #592
+
+  * 2015-04-16 Matías Aguirre <matiasaguirre@gmail.com>
+    Move OAuth1 method out from the base class
+
+  * 2015-04-16 zz <zz.at.field@gmail.com>
+    Fix the final_username may be empty and will skip the loop.
+
+  * 2015-04-16 ys.chi <duguschi@gmail.com>
+    Alter email max length for Django app
+
+  * 2015-04-15 Matías Aguirre <matiasaguirre@gmail.com>
+    Remove single-use var
+
+  * 2015-04-15 Matías Aguirre <matiasaguirre@gmail.com>
+    Clean any pipeline remanents when starting the process. Refs #325
+
+  * 2015-04-15 Matías Aguirre <matiasaguirre@gmail.com>
+    Flag dev version
+
+  * 2015-04-15 Matías Aguirre <matiasaguirre@gmail.com>
+    Swtich Twitter API to POST (as it's documented)
+
+  * 2015-04-15 Christian Pedersen <chripede@gmail.com>
+    Append trailing slash in Django
+
+2015-04-14 v0.2.6
+=================
+
+  * 2015-04-14 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.6
+
+  * 2015-04-14 Matías Aguirre <matiasaguirre@gmail.com>
+    Include tests requirements files. Fixes #590
+
+  * 2015-04-13 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix publish task
+
+2015-04-13 v0.2.5
+=================
+
+  * 2015-04-13 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.5
+
+  * 2015-04-13 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix wheel support. Refs #588
+
+  * 2015-04-13 Matías Aguirre <matiasaguirre@gmail.com>
+    Add email to default list of protected userfields (popular demand)
+
+2015-04-11 v0.2.4
+=================
+
+  * 2015-04-11 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.4
+
+  * 2015-04-11 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix setting name (make it backend related). Refs #586
+
+  * 2015-04-10 Matías Aguirre <matiasaguirre@gmail.com>
+    Link to post about access-token based authentication
+
+  * 2015-04-08 Matías Aguirre <matiasaguirre@gmail.com>
+    Move revoke methods to common class. Fixes #484
+
+  * 2015-04-08 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix settings names on spotify docs. Fixes #475
+
+  * 2015-04-07 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix links in docs
+
+  * 2015-04-07 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix Facebook test case after API version change. Refs #480
+
+  * 2015-04-07 Matías Aguirre <matiasaguirre@gmail.com>
+    Update Facebook to API v2.3
+
+  * 2015-04-07 Matías Aguirre <matiasaguirre@gmail.com>
+    Fix get_scope() override example
+
+  * 2015-04-07 Matías Aguirre <matiasaguirre@gmail.com>
+    Raise error if token was passed but it's incomplete. Fixes #574
+
+  * 2015-04-06 Matías Aguirre <matiasaguirre@gmail.com>
+    Flag dev version
+
+  * 2015-04-06 Matt Robenolt <matt@ydekproductions.com>
+    Build a wheel, and upload with twine
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Log error messages. Fixes #507
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Pass all arguments to extra_data (save access token).
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Improve http error handling on auth_complete/do_auth. Fixes #304
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Update docs about SOCIAL_AUTH_PROTECTED_USER_FIELDS. Fixes #459
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Optional trailing slash on django apps. Fixes #505
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Improve deprecation notice on behance docs
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Add notice about behance broken api. Refs #530
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Remove unsupported attribute from alter field migration
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Remove hard limitations on PyJWT and requests-oauthlib versions. Fixes #531
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Change title
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Link backend docs
+
+  * 2015-04-04 Matías Aguirre <matiasaguirre@gmail.com>
+    Add docs about disconnection and logging out difference. Fixes #568
+
+  * 2015-04-03 Matías Aguirre <matiasaguirre@gmail.com>
+    Conditional import on transaction, update docs to mention it. Fixes #572
+
+  * 2015-04-03 Matías Aguirre <matiasaguirre@gmail.com>
+    Define a MANIFEST.in file. Fixes #578
+
+  * 2015-04-03 Lucas Roesler <roesler.lucas@gmail.com>
+    Allow inactive users to login
+
+  * 2015-04-02 Matías Aguirre <matiasaguirre@gmail.com>
+    Update django/mongoengine example (similar to default one). Refs #576
+
+  * 2015-04-02 Matías Aguirre <matiasaguirre@gmail.com>
+    Add backward compatibility on django app initialization. Refs #550
+
+  * 2015-04-01 M.Yasoob Ullah Khalid ☺ <yasoob.khld@gmail.com>
+    Update LICENSE
+
 2015-03-31 v0.2.3
 =================
+
+  * 2015-03-31 Matías Aguirre <matiasaguirre@gmail.com>
+    v0.2.3
 
   * 2015-03-31 Matías Aguirre <matiasaguirre@gmail.com>
     PEP8. Refs #570
@@ -52,6 +384,9 @@
 
   * 2015-03-17 Matías Aguirre <matiasaguirre@gmail.com>
     Ensure to flush the db session (needed for Pyramid + sqlalchemy). Refs #390
+
+  * 2015-03-12 DanielJDufour <daniel.j.dufour@gmail.com>
+    update for django 1.9
 
   * 2015-03-12 Matt Howland <matt.howland@lab45.com>
     Create vend.py
@@ -279,6 +614,10 @@
 
   * 2014-12-24 Alex Muller <alex.muller@digital.cabinet-office.gov.uk>
     Update GitHub documentation
+
+  * 2014-12-19 Frankie Robertson <frankie@robertson.name>
+    Fix #460: Call force_text on _URL settings to support reverse_lazy with
+    default session serializer
 
   * 2014-11-27 James Potter <james.potter@gmail.com>
     Update django.rst
